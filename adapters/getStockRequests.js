@@ -1,4 +1,4 @@
-import getById from "../ports/drivingPort.js";
+import getById from "../ports/drivingPortStock.js";
 
 
 async function getStocksRequest(stockID){

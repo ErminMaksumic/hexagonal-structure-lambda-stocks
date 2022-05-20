@@ -1,4 +1,4 @@
-import Repository from "../ports/drivenPort.js";
+import Repository from "../ports/drivenPortStock.js";
 
 const retrieveStockValues = async (stockID) => {
     try{
