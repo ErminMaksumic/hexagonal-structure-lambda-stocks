@@ -1,10 +1,23 @@
 import {getDataFromAdapterDB, getAllDataFromAdapterDB, deleteProductInAdapterDB, postProductInAdapterDB, editProductInAdapterDB} 
 from '../ports/productRepository.js'
+import { getCurrencies } from '../ports/currencyPort.js';
 
-export async function retrieveProductData(productId){
+export async function retrieveProductData(productId, query = undefined){
     try {
 
         const retrievedData = await getDataFromAdapterDB(productId);
+
+        if(query!=undefined)
+        {
+        const currencies = await getCurrencies(query);
+
+        console.log(currencies.data.rates)
+
+        const temp = retrievedData.price
+
+        retrievedData.price = currencies.data.rates.EUR * temp;
+
+        }
 
         return retrievedData;
         

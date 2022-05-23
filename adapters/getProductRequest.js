@@ -1,11 +1,11 @@
 import { returnProductReq } from '../ports/returnProductReq.js'
 
 
-export async function getProductReq(productId)
+export async function getProductReq(productId, query = undefined)
 {
         try {
 
-            const product = await returnProductReq(productId);
+            const product = await returnProductReq(productId, query);
 
             if(product == null)
             {

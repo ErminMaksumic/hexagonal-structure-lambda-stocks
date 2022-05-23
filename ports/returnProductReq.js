@@ -1,10 +1,10 @@
 import { retrieveProductData, retrieveAllProductData, deleteProduct, postProduct, editProduct } from '../domains/productLogic.js'
 
-export async function returnProductReq(productId)
+export async function returnProductReq(productId, query = undefined)
 {
     try {
 
-    var productData = await retrieveProductData(productId)
+    var productData = await retrieveProductData(productId, query)
 
     return productData;
         

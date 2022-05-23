@@ -17,20 +17,24 @@ export async function hello(event) {
     return {message: "Not found"}
   }*/
 
+  console.log(event.queryStringParameters?.currency)
+
   try {
     switch (event.routeKey) {
       case "GET /products/getById/{id}":
         const id = event.pathParameters.id;
-        return await getProductReq(id);
-        /*const res = await getProductReq(id);
-        result = {
-          'statusCode' : 200,
-          'body': JSON.stringify({
-              prod: res
-          })
+
+        if(validateQueryParam(event.queryStringParameters?.currency))
+          {
+            return await getProductReq(id, event.queryStringParameters?.currency)
           }
-          return result;
-*/
+
+          
+        return {
+          'statusCode' : 400,
+          'body': JSON.stringify({message: 'Invalid currency!'})
+          }
+
       case "GET /products":
         return await getAllProductsReq();
         
@@ -55,7 +59,22 @@ export async function hello(event) {
    {
     return {
       'statusCode' : 500,
-      'body': JSON.stringify({message: "Internal server error"})
+      'body': JSON.stringify({message: error.message})
     } 
    }
+}
+
+function validateQueryParam(param)
+{
+  const allowedCurrencies = ['BAM', 'HRK', 'GMD', 'NAD', 'MVR'];
+
+
+  if(param == undefined || allowedCurrencies.findIndex(currency=> currency == param) > -1)
+  {
+    console.log((allowedCurrencies.findIndex(currency => currency == param)) > -1);
+    return true;
+  }
+
+  return false;
+
 }
