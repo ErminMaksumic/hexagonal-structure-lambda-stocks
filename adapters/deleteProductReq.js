@@ -10,13 +10,13 @@ export async function deleteProductReq(deleteId)
         if(deleteProduct != null)
         {
             return  {
-            'StatusCode': 200,
+            'statusCode': 200,
             }
         }
         else
         {
             return  {
-                'StatusCode': 404,
+                'statusCode': 404,
                 'message': JSON.stringify({message: "not found"})
             }
         }

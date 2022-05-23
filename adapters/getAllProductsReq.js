@@ -9,13 +9,15 @@ export async function getAllProductsReq()
         var prodData = await returnAllProductReq();
 
         if(prodData!=null){
-            return prodData;
-        }
+            return  {
+                'statusCode': 200,
+                'body': JSON.stringify(prodData.Items)
+               }}
         else
         {
             res = {
-                'statusCode': 401,
-                'body': JSON.stringify({message: "not found"})
+                'statusCode': 404,
+                'body': JSON.stringify({message: "There are no products here!"})
                   } 
         }
 

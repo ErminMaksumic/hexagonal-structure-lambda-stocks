@@ -9,15 +9,15 @@ export async function editProductReq(editId, body)
         if(editData != null)
         {
             return  {
-            'StatusCode': 200,
+            'statusCode': 200,
             'body': JSON.stringify(editData)
             }
         }
         else
         {
             return  {
-                'StatusCode': 404,
-                'message': JSON.stringify({message: "not found"})
+                'statusCode': 500,
+                'message': JSON.stringify({message: "internal server error"})
             }
         }
 

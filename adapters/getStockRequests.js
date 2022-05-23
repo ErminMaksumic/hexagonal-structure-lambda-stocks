@@ -6,8 +6,7 @@ async function getStocksRequest(stockID){
 
     try {   
         const stockData = await getById(stockID)
-        console.log("stock data - > ")
-
+        
         if(stockData == null)
        { 
            return null;
