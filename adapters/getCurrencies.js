@@ -2,7 +2,9 @@ import axios from "axios";
 
 export async function getData(query = null)
 {
-    const data = axios.get(`https://open.er-api.com/v6/latest/${query}`);
+    const exchange = await axios.get(`https://open.er-api.com/v6/latest/EUR`);
 
-    return data;
+    const data = exchange.data
+
+    return data.rates[query];
 }

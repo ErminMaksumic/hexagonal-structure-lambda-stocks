@@ -9,13 +9,11 @@ export async function retrieveProductData(productId, query = undefined){
 
         if(query!=undefined)
         {
-        const currencies = await getCurrencies(query);
-
-        console.log(currencies.data.rates)
+        const currencies = await getCurrencies(query); // get BAM values
 
         const temp = retrievedData.price
 
-        retrievedData.price = currencies.data.rates.EUR * temp;
+        retrievedData.price = currencies * temp; // 0.5 x 2.1   :/
 
         }
 
